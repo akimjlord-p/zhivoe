@@ -14,14 +14,15 @@ class Board:
         self.ui_board = []
         self.x_indentation = x_indentation
         self.y_indentation = y_indentation
-        self.cell_size = 100
+        self.cell_size = 40
 
     def initiate(self):
         for y in range(self.height):
             self.ui_board.append([])
             self.data_board.append([])
             for x in range(self.width):
-                self.ui_board[y].append(Cell(self.cells, x, y, self.x_indentation, self.y_indentation))
+                self.ui_board[y].append(Cell(self.cells, x, y, self.x_indentation, self.y_indentation,
+                                             cell_size=self.cell_size))
                 self.data_board[y].append(0)
         self.pre_data_board = deepcopy(self.data_board)
 

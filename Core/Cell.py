@@ -6,7 +6,8 @@ class Cell(pygame.sprite.Sprite):
     sprite_sheet_c2 = alive_cell_c2 = pygame.image.load('../media/cell_c2.png')
     image = dead_cell = pygame.image.load('../media/dead_cell.png')
 
-    def __init__(self, group, x, y, x_indent, y_indent):
+    def __init__(self, group, x, y, x_indent, y_indent, cell_size):
+        self.cell_size = cell_size
         self.is_alive = False
         super().__init__(group)
         self.command = 0
@@ -15,10 +16,10 @@ class Cell(pygame.sprite.Sprite):
         self.cur_frame = 0
         self.cut_sheet_c1(Cell.alive_cell_c1)
         self.cut_sheet_c2(Cell.alive_cell_c2)
-        self.rect = pygame.rect.Rect(0, 0, 100, 100)
+        self.rect = pygame.rect.Rect(0, 0, cell_size, cell_size)
 
-        self.rect.x = x * 100 + x_indent
-        self.rect.y = y * 100 + y_indent
+        self.rect.x = x * cell_size + x_indent
+        self.rect.y = y * cell_size + y_indent
 
     def cut_sheet_c1(self, sheet):
         self.rect = pygame.Rect(0, 0, sheet.get_width() // 3,
@@ -61,24 +62,4 @@ class Cell(pygame.sprite.Sprite):
             self.image = Cell.dead_cell
 
 
-# Для теста
-# size = width, height = 1920, 1000
-# screen = pygame.display.set_mode(size)
-# all_sprites = pygame.sprite.Group()
-# pygame.display.set_caption('Инициализация игры')
 
-# Cell(all_sprites, 0, 0, 300, 300).kill()
-# Cell(all_sprites, 1, 1, 300, 300)
-# clock = pygame.time.Clock()
-# running = True
-
-# while running:
-#    for event in pygame.event.get():
-#        if event.type == pygame.QUIT:
-#            running = False
-#    clock.tick(10)
-#    screen.fill((255, 255, 255))
-#    all_sprites.update()
-#   all_sprites.draw(screen)
-#    pygame.display.flip()
-# pygame.quit()

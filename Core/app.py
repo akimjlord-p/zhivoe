@@ -2,17 +2,17 @@ import pygame
 from Board import Board
 
 
-if __name__ == '__main__':
+def zhivoe_game(width, height, delay):
     pygame.init()
     size = 1920, 1000
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption('Инициализация игры')
-    board = Board(10, 10, 100, 100, screen)
+    board = Board(width, height, 100, 100, screen)
     board.initiate()
     running = True
     clock = pygame.time.Clock()
     recycle = pygame.USEREVENT + 1
-    pygame.time.set_timer(recycle, 5000)
+    pygame.time.set_timer(recycle, delay)
     start = False
     while running:
         for event in pygame.event.get():
@@ -31,3 +31,6 @@ if __name__ == '__main__':
         board.render(screen)
         pygame.display.flip()
     pygame.quit()
+
+
+zhivoe_game(35, 20, 1000)
